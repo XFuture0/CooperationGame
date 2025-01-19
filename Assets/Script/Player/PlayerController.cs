@@ -1,0 +1,80 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
+
+public class PlayerController : MonoBehaviour
+{
+    private Rigidbody2D rb;
+    private PlayerInputControl inputControl;
+    private PhysicsCheck physicsCheck;
+    private Vector2 inputDirection;
+    [Header("基础属性")]
+    public float moveSpeed;
+    public float jumpForce;
+
+    // [Header("bool")] 
+    private void Awake()
+    {
+        inputControl = new PlayerInputControl();
+        rb = GetComponent<Rigidbody2D>();
+        physicsCheck = GetComponent<PhysicsCheck>();
+        
+        
+        inputControl.GamePlay.Jump.started += Jump;
+
+    }
+
+    
+
+    private void OnEnable()
+    {
+        inputControl.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputControl.Disable();
+    }
+
+    private void Start()
+    {
+        
+    }
+
+    private void Update()
+    {
+        inputDirection = inputControl.GamePlay.Move.ReadValue<Vector2>();
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    private void Move()
+    {
+        rb.velocity = new Vector2(inputDirection.x * moveSpeed, rb.velocity.y);
+        var faceDir = (int)transform.localScale.x;
+        if (inputDirection.x > 0)
+            faceDir = -1;
+        if (inputDirection.x < 0)
+            faceDir = 1;
+        transform.localScale = new Vector3(faceDir, transform.localScale.y, transform.localScale.z);
+    }
+    
+    //TODO:跳跃优化
+    private void Jump(InputAction.CallbackContext obj)
+    {
+        if (physicsCheck.isGround)
+        {
+            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+        }
+        
+    }
+    
+    
+    
+}
