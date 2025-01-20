@@ -24,10 +24,11 @@ public class PlayerController : MonoBehaviour
         
         
         inputControl.GamePlay.Jump.started += Jump;
-
+        
     }
 
     
+
 
     private void OnEnable()
     {
@@ -74,6 +75,8 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+    
+    
     
     
     
