@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
 
-    // [Header("bool")] 
+    [Header("bool")] 
+    [SerializeField]private bool isBubble;
     private void Awake()
     {
         inputControl = new PlayerInputControl();
@@ -24,10 +25,10 @@ public class PlayerController : MonoBehaviour
         
         
         inputControl.GamePlay.Jump.started += Jump;
-        
-    }
+        inputControl.GamePlay.Bubble.performed += BubbleStart;
+        inputControl.GamePlay.Bubble.canceled += BubbleEnd;
 
-    
+    }
 
 
     private void OnEnable()
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         inputDirection = inputControl.GamePlay.Move.ReadValue<Vector2>();
+        BlowBubbles();
     }
 
     private void FixedUpdate()
@@ -74,6 +76,28 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
         
+    }
+    
+    //TODO:思路1（长按让泡泡变大）  
+    //下面这个就是吹泡泡，按下开始吹，松开就结束，可以设计泡泡爆炸或者什么
+    private void BubbleStart(InputAction.CallbackContext obj)
+    {
+        Debug.Log("BubbleStart");
+        isBubble = true;
+    }
+    
+    private void BubbleEnd(InputAction.CallbackContext obj)
+    {
+        Debug.Log("BubbleEnd");
+        isBubble = false;
+    }
+
+    private void BlowBubbles()
+    {
+        if (isBubble)
+        {
+            Debug.Log("Bubbles");
+        }
     }
     
     
