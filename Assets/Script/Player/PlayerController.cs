@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerInputControl inputControl;
     private PhysicsCheck physicsCheck;
-    private GameManager gameManager;
+    private BubbleManager bubbleManager;
     private Vector2 inputDirection;
     [Header("基础属性")]
     public float moveSpeed;
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         inputControl = new PlayerInputControl();
         rb = GetComponent<Rigidbody2D>();
         physicsCheck = GetComponent<PhysicsCheck>();
-        gameManager = FindObjectOfType<GameManager>();
+        bubbleManager = FindObjectOfType<BubbleManager>();
         
         
         inputControl.GamePlay.Jump.started += Jump;
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("BubbleEnd");
         isBubble = false;
-        gameManager.FireBubble();
+        bubbleManager.FireBubble();
     }
 
     private void BlowBubbles()

@@ -4,7 +4,7 @@ using UnityEngine;
 public class ObjectPool<T> where T : MonoBehaviour
 {
     private Queue<T> pool = new Queue<T>();  // 存储可复用的对象队列
-    private T prefab;  // 对象的预设（Prefab）
+    private T prefab;  // 对象的prefab  
 
     // 构造函数，传入对象的预设
     public ObjectPool(T prefab)
@@ -23,7 +23,7 @@ public class ObjectPool<T> where T : MonoBehaviour
         }
         else
         {
-            T newObj = Object.Instantiate(prefab);  // 如果池为空，创建新对象
+            T newObj = Object.Instantiate(prefab);  // 如果池为空，创建新对象    //TODO:此处可以限制在某个父类下创建，可以在Hierarchy窗口中更整洁
             return newObj;
         }
     }
