@@ -10,7 +10,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerInputControl inputControl;
     private PhysicsCheck physicsCheck;
+<<<<<<< HEAD
     private BubbleManager bubbleManager;
+=======
+>>>>>>> e12ff6d5d79513329743d5461f828ddd6b4d0c23
     private Vector2 inputDirection;
     [Header("基础属性")]
     public float moveSpeed;
@@ -23,7 +26,10 @@ public class PlayerController : MonoBehaviour
         inputControl = new PlayerInputControl();
         rb = GetComponent<Rigidbody2D>();
         physicsCheck = GetComponent<PhysicsCheck>();
+<<<<<<< HEAD
         bubbleManager = FindObjectOfType<BubbleManager>();
+=======
+>>>>>>> e12ff6d5d79513329743d5461f828ddd6b4d0c23
         
         
         inputControl.GamePlay.Jump.started += Jump;
@@ -92,7 +98,10 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("BubbleEnd");
         isBubble = false;
+<<<<<<< HEAD
         bubbleManager.FireBubble();
+=======
+>>>>>>> e12ff6d5d79513329743d5461f828ddd6b4d0c23
     }
 
     private void BlowBubbles()
@@ -100,10 +109,14 @@ public class PlayerController : MonoBehaviour
         if (isBubble)
         {
             Debug.Log("Bubbles");
+<<<<<<< HEAD
             
         }
         //调用gameManager里面发射泡泡的函数
         
+=======
+        }
+>>>>>>> e12ff6d5d79513329743d5461f828ddd6b4d0c23
     }
     
     
