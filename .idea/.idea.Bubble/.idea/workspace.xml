@@ -6,12 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="e67e52c9-1793-42b4-a08b-55e841b04ae6" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Bubble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bubble/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/First Scenes.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/First Scenes.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/General/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/General/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/General/ObjectPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/General/ObjectPool.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Items/Test Bubble.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Items/Test Bubble.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Player/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sprites/Bubbles/Coloured/32x32/bubble_1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Bubbles/Coloured/32x32/bubble_1.png.meta" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Player/PlayerController.cs" afterDir="false" />
+>>>>>>> e12ff6d5d79513329743d5461f828ddd6b4d0c23
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +26,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+<<<<<<< HEAD
     <setting file="file://$PROJECT_DIR$/Assets/Script/General/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+=======
+>>>>>>> e12ff6d5d79513329743d5461f828ddd6b4d0c23
     <setting file="file://$PROJECT_DIR$/Assets/Script/General/Interact.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Items/Test Interact.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Utilities/IInteractable.cs" root0="FORCE_HIGHLIGHTING" />
@@ -98,11 +105,15 @@
       <workItem from="1737215568599" duration="5364000" />
       <workItem from="1737231037850" duration="1803000" />
       <workItem from="1737369724603" duration="2836000" />
+<<<<<<< HEAD
       <workItem from="1737397901489" duration="2705000" />
       <workItem from="1737458307184" duration="2187000" />
       <workItem from="1737477039158" duration="5084000" />
       <workItem from="1737486673088" duration="1296000" />
       <workItem from="1737523025467" duration="3033000" />
+=======
+      <workItem from="1737397901489" duration="2404000" />
+>>>>>>> e12ff6d5d79513329743d5461f828ddd6b4d0c23
     </task>
     <servers />
   </component>

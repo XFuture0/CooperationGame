@@ -43,7 +43,15 @@ public class Interact : MonoBehaviour
         if (canInteract)
         {
             targetItem.TriggerAction();
+<<<<<<< HEAD
         }
+=======
+            //展示对话框，开始对话
+            Debug.Log("Interact");
+            PlayerDialogue.instance.ShowDialogue();
+        }
+        
+>>>>>>> e12ff6d5d79513329743d5461f828ddd6b4d0c23
     }
     
 
@@ -53,7 +61,14 @@ public class Interact : MonoBehaviour
         {
             canInteract = true;
             targetItem = other.GetComponent<IInteractable>();
+<<<<<<< HEAD
         }
+=======
+            //接触可互动物体将对话内容传递过来
+            PlayerDialogue.instance.dialogue = other.GetComponent<NPC>().dialogue;
+        }
+
+>>>>>>> e12ff6d5d79513329743d5461f828ddd6b4d0c23
         
     }
     
