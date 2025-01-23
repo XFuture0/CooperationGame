@@ -12,6 +12,10 @@ public class PressCheck : MonoBehaviour
     public bool IsPressA;
     public bool IsPressS;
     public bool IsPressD;
+    [Header("广播")]
+    public FloatEventSO Bubble_Speed_Event;//确定泡泡的飞行方向
+    [Header("事件监听")]
+    public VoidEventSO CallBubbleFlyEvent;
     private void Awake()
     {
         inputControl = new PlayerInputControl();
@@ -27,9 +31,35 @@ public class PressCheck : MonoBehaviour
         inputControl.PressCheck.A.canceled += CancelA;
         inputControl.PressCheck.S.canceled += CancelS;
         inputControl.PressCheck.D.canceled += CancelD;
+        CallBubbleFlyEvent.OnVoidEventRaised += OnCallBubbleFly;
+    }
+    private void OnCallBubbleFly()
+    {
+        if (IsPressD)
+        {
+            Bubble_Speed_Event.RaisedFloatEvent(1);
+            Debug.Log(1);
+            return;
+        }
+        if (IsPressA)
+        {
+            Bubble_Speed_Event.RaisedFloatEvent(2);
+            return;
+        }
+        if (IsPressW)
+        {
+            Bubble_Speed_Event.RaisedFloatEvent(3);
+            return;
+        }
+        if (IsPressS)
+        {
+            Bubble_Speed_Event.RaisedFloatEvent(4);
+            return;
+        }
     }
     private void OnDisable()
     {
+        CallBubbleFlyEvent.OnVoidEventRaised -= OnCallBubbleFly;
         inputControl.Disable();
     }
     private void CancelD(InputAction.CallbackContext context)
