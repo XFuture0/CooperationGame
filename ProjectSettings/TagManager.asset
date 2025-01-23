@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bounds
   - Interactive Object
+  - Bubble
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 3671590505
+    locked: 0
+  - name: Center
+    uniqueID: 2194640753
+    locked: 0
+  - name: Front
+    uniqueID: 1583433197
     locked: 0

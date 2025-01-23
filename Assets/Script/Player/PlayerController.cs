@@ -11,13 +11,21 @@ public class PlayerController : MonoBehaviour
     private PlayerInputControl inputControl;
     private PhysicsCheck physicsCheck;
     private BubbleManager bubbleManager;
+    public GameObject TouchRange;
     private Vector2 inputDirection;
+    [Header("泡泡属性")]
+    private float BubbleLarge;//泡泡的大小
+    public float BubbleLargeing;//泡泡的变大速率
+    public float BubbleMax;//泡泡最大大小
+    public float BubbleMin;//泡泡最小大小
     [Header("基础属性")]
     public float moveSpeed;
     public float jumpForce;
-
     [Header("bool")] 
     [SerializeField]private bool isBubble;
+    [Header("广播")]
+    public TransFormEventSO Transform_Bubble_To_PlayerEvent;//释放泡泡时将泡泡生成在玩家面前
+    public FloatEventSO BubbleMaxEvent;//传递泡泡的大小的数值
     private void Awake()
     {
         inputControl = new PlayerInputControl();
@@ -25,14 +33,12 @@ public class PlayerController : MonoBehaviour
         physicsCheck = GetComponent<PhysicsCheck>();
         bubbleManager = FindObjectOfType<BubbleManager>();
         
-        
         inputControl.GamePlay.Jump.started += Jump;
+        inputControl.GamePlay.Touch.started += SetBubbleRange;//产生泡泡的感应环
         inputControl.GamePlay.Bubble.performed += BubbleStart;
         inputControl.GamePlay.Bubble.canceled += BubbleEnd;
 
     }
-
-
     private void OnEnable()
     {
         inputControl.Enable();
@@ -45,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        
+        BubbleLarge = 0;
     }
 
     private void Update()
@@ -92,22 +98,40 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("BubbleEnd");
         isBubble = false;
+        if(BubbleLarge < BubbleMin)
+        {
+            BubbleLarge = BubbleMin;//泡泡最小大小
+        }
+        Transform_Bubble_To_PlayerEvent.RaisedTransFormEvent(this.gameObject.transform);//传递玩家坐标
+        BubbleMaxEvent.RaisedFloatEvent(BubbleLarge);
         bubbleManager.FireBubble();
+        BubbleLarge = 0;
     }
 
     private void BlowBubbles()
     {
         if (isBubble)
         {
-            Debug.Log("Bubbles");
-            
+            if (BubbleLarge < BubbleMax)
+            {
+                BubbleLarge += BubbleLargeing;
+            }
+            else
+            {
+                BubbleLarge = BubbleMax;//泡泡最大大小
+            }
         }
         //调用gameManager里面发射泡泡的函数
-        
+
     }
-    
-    
-    
-    
-    
+    private void SetBubbleRange(InputAction.CallbackContext context)
+    {
+        TouchRange.SetActive(true);
+        StartCoroutine(CloseTouchRange());
+    }
+    private IEnumerator CloseTouchRange()//用携程关闭感应环
+    {
+        yield return new WaitForSeconds(0.5f);
+        TouchRange.SetActive(false);
+    }
 }
