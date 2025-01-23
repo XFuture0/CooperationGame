@@ -126,7 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe6e7de4862bc1428883fa1a4dfe00a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 5
   Soft_Time: 2
+  Bubble_Speed_Event: {fileID: 11400000, guid: 84df67c06218bd04690cb3c899a4a21c, type: 2}
 --- !u!58 &4527086923526878127
 CircleCollider2D:
   m_ObjectHideFlags: 0

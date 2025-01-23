@@ -7,6 +7,8 @@ public class Bubble : MonoBehaviour
 {
     private Rigidbody2D rb;
     private CircleCollider2D circleCollider2d;
+    public float SpeedChoose;//方向选择
+    public float Speed;//泡泡的速度
     [Header("TimeCounter")]
     private float destroyTime = 3f;
     private float destroyTimeCounter;
@@ -17,6 +19,8 @@ public class Bubble : MonoBehaviour
     [Header("悬浮计时器")]
     public float Soft_Time;
     private float Soft_Time_Count;
+    [Header("事件监听")]
+    public FloatEventSO Bubble_Speed_Event;
     private void Awake()
     {
         destroyTimeCounter = destroyTime;
@@ -31,11 +35,25 @@ public class Bubble : MonoBehaviour
     private void FixedUpdate()
     {
         SoftIng();
+        Bubble_Speed();
     }
     private void OnEnable()
     {
+        SpeedChoose = 0;
         Soft_Time_Count = Soft_Time;
         isSoft = true;
+        Bubble_Speed_Event.OnFloatEventRaised += OnBubble_Speed;
+    }
+
+    private void OnBubble_Speed(float speedChoose)
+    {
+        isShootBubble = true;
+        SpeedChoose = speedChoose;
+    }
+
+    private void OnDisable()
+    {
+        Bubble_Speed_Event.OnFloatEventRaised -= OnBubble_Speed;
     }
     private void SoftIng()
     {
@@ -65,9 +83,11 @@ public class Bubble : MonoBehaviour
     public void Shoot()
     {
         // 泡泡发射的行为
-        
-        isShootBubble = true;   
-        rb.AddForce(transform.up * 10f, ForceMode2D.Impulse);  //测试泡泡  目前是向上飘
+        if (!isShootBubble)
+        {
+            isShootBubble = true;
+            SpeedChoose = 3;  //测试泡泡  目前是向上飘(默认)
+        }
     }
     private void ShootBubbleTimeCounter()  //泡泡返回池中的时间   应该可以用携程重写
     {
@@ -77,12 +97,33 @@ public class Bubble : MonoBehaviour
         }
         if (destroyTimeCounter <= 0)
         {
+            SpeedChoose = 0;
             bubbleManager.OnBubbleReturn(this);  //用依赖注入，调用BubbleManager里面的ReturnObject
             isShootBubble = false;
             destroyTimeCounter = destroyTime;
         }
     }
-
+    private void Bubble_Speed()
+    {
+        switch (SpeedChoose)
+        {
+            case 0:
+                rb.velocity = Vector2.zero;
+                break;
+            case 1:
+                rb.velocity = new Vector2(Speed,0);
+                break;
+            case 2:
+                rb.velocity = new Vector2(-Speed, 0);
+                break;
+            case 3:
+                rb.velocity = new Vector2(0, Speed);
+                break;
+            case 4:
+                rb.velocity = new Vector2(0, -Speed);
+                break;
+        }
+    }
     
 }
 

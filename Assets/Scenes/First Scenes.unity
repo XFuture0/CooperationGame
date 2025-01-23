@@ -490,6 +490,8 @@ MonoBehaviour:
   IsPressA: 0
   IsPressS: 0
   IsPressD: 0
+  Bubble_Speed_Event: {fileID: 11400000, guid: 84df67c06218bd04690cb3c899a4a21c, type: 2}
+  CallBubbleFlyEvent: {fileID: 11400000, guid: e6c3dc8d974fbc34284a52a9ac7d596d, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0e939ff18aefe4ab850fbf17974467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CallBubbleFlyEvent: {fileID: 11400000, guid: e6c3dc8d974fbc34284a52a9ac7d596d, type: 2}
 --- !u!1 &594856707
 GameObject:
   m_ObjectHideFlags: 0
