@@ -62,6 +62,15 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Touch"",
+                    ""type"": ""Button"",
+                    ""id"": ""01f74311-7ad0-46ac-a5aa-e7fc8384c957"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -227,6 +236,17 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Bubble"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca8d3906-c3e7-40b4-887e-ae4a4ca4c180"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Touch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -747,6 +767,94 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PressCheck"",
+            ""id"": ""4acd1f2e-7ac3-4a90-987f-21539cfe8738"",
+            ""actions"": [
+                {
+                    ""name"": ""W"",
+                    ""type"": ""Button"",
+                    ""id"": ""b30cfa6c-5cc9-4909-9088-ec4a8dcea1f6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""A"",
+                    ""type"": ""Button"",
+                    ""id"": ""85a55824-9587-4883-90be-f147fc275113"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""S"",
+                    ""type"": ""Button"",
+                    ""id"": ""82ada065-1cae-4c25-91ad-e71a19a49187"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""D"",
+                    ""type"": ""Button"",
+                    ""id"": ""1622826d-3c97-4aa2-a552-f4a465cb2ead"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""71d38f85-4759-4a32-80dc-c89f5f223944"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""W"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d61768a-2989-44d6-b428-41cff9468c09"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""A"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""419ec788-c280-4d3d-8a6b-7b74d1c45064"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""S"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""41aee7b8-93ac-4d80-8a51-79cb329336bd"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""D"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -818,6 +926,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
         m_GamePlay_interact = m_GamePlay.FindAction("interact", throwIfNotFound: true);
         m_GamePlay_Bubble = m_GamePlay.FindAction("Bubble", throwIfNotFound: true);
+        m_GamePlay_Touch = m_GamePlay.FindAction("Touch", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -830,12 +939,19 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // PressCheck
+        m_PressCheck = asset.FindActionMap("PressCheck", throwIfNotFound: true);
+        m_PressCheck_W = m_PressCheck.FindAction("W", throwIfNotFound: true);
+        m_PressCheck_A = m_PressCheck.FindAction("A", throwIfNotFound: true);
+        m_PressCheck_S = m_PressCheck.FindAction("S", throwIfNotFound: true);
+        m_PressCheck_D = m_PressCheck.FindAction("D", throwIfNotFound: true);
     }
 
     ~@PlayerInputControl()
     {
         UnityEngine.Debug.Assert(!m_GamePlay.enabled, "This will cause a leak and performance issues, PlayerInputControl.GamePlay.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, PlayerInputControl.UI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PressCheck.enabled, "This will cause a leak and performance issues, PlayerInputControl.PressCheck.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -901,6 +1017,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Jump;
     private readonly InputAction m_GamePlay_interact;
     private readonly InputAction m_GamePlay_Bubble;
+    private readonly InputAction m_GamePlay_Touch;
     public struct GamePlayActions
     {
         private @PlayerInputControl m_Wrapper;
@@ -909,6 +1026,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
         public InputAction @interact => m_Wrapper.m_GamePlay_interact;
         public InputAction @Bubble => m_Wrapper.m_GamePlay_Bubble;
+        public InputAction @Touch => m_Wrapper.m_GamePlay_Touch;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -930,6 +1048,9 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
             @Bubble.started += instance.OnBubble;
             @Bubble.performed += instance.OnBubble;
             @Bubble.canceled += instance.OnBubble;
+            @Touch.started += instance.OnTouch;
+            @Touch.performed += instance.OnTouch;
+            @Touch.canceled += instance.OnTouch;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -946,6 +1067,9 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
             @Bubble.started -= instance.OnBubble;
             @Bubble.performed -= instance.OnBubble;
             @Bubble.canceled -= instance.OnBubble;
+            @Touch.started -= instance.OnTouch;
+            @Touch.performed -= instance.OnTouch;
+            @Touch.canceled -= instance.OnTouch;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -1081,6 +1205,76 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // PressCheck
+    private readonly InputActionMap m_PressCheck;
+    private List<IPressCheckActions> m_PressCheckActionsCallbackInterfaces = new List<IPressCheckActions>();
+    private readonly InputAction m_PressCheck_W;
+    private readonly InputAction m_PressCheck_A;
+    private readonly InputAction m_PressCheck_S;
+    private readonly InputAction m_PressCheck_D;
+    public struct PressCheckActions
+    {
+        private @PlayerInputControl m_Wrapper;
+        public PressCheckActions(@PlayerInputControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @W => m_Wrapper.m_PressCheck_W;
+        public InputAction @A => m_Wrapper.m_PressCheck_A;
+        public InputAction @S => m_Wrapper.m_PressCheck_S;
+        public InputAction @D => m_Wrapper.m_PressCheck_D;
+        public InputActionMap Get() { return m_Wrapper.m_PressCheck; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PressCheckActions set) { return set.Get(); }
+        public void AddCallbacks(IPressCheckActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PressCheckActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PressCheckActionsCallbackInterfaces.Add(instance);
+            @W.started += instance.OnW;
+            @W.performed += instance.OnW;
+            @W.canceled += instance.OnW;
+            @A.started += instance.OnA;
+            @A.performed += instance.OnA;
+            @A.canceled += instance.OnA;
+            @S.started += instance.OnS;
+            @S.performed += instance.OnS;
+            @S.canceled += instance.OnS;
+            @D.started += instance.OnD;
+            @D.performed += instance.OnD;
+            @D.canceled += instance.OnD;
+        }
+
+        private void UnregisterCallbacks(IPressCheckActions instance)
+        {
+            @W.started -= instance.OnW;
+            @W.performed -= instance.OnW;
+            @W.canceled -= instance.OnW;
+            @A.started -= instance.OnA;
+            @A.performed -= instance.OnA;
+            @A.canceled -= instance.OnA;
+            @S.started -= instance.OnS;
+            @S.performed -= instance.OnS;
+            @S.canceled -= instance.OnS;
+            @D.started -= instance.OnD;
+            @D.performed -= instance.OnD;
+            @D.canceled -= instance.OnD;
+        }
+
+        public void RemoveCallbacks(IPressCheckActions instance)
+        {
+            if (m_Wrapper.m_PressCheckActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPressCheckActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PressCheckActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PressCheckActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PressCheckActions @PressCheck => new PressCheckActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1132,6 +1326,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnBubble(InputAction.CallbackContext context);
+        void OnTouch(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1145,5 +1340,12 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IPressCheckActions
+    {
+        void OnW(InputAction.CallbackContext context);
+        void OnA(InputAction.CallbackContext context);
+        void OnS(InputAction.CallbackContext context);
+        void OnD(InputAction.CallbackContext context);
     }
 }

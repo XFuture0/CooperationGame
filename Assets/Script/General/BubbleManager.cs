@@ -8,7 +8,12 @@ public class BubbleManager : MonoBehaviour
     [Header("Bubble Shoot")]
     public Bubble bubblePrefab;   //这里的类型为bubble 不是GameObject  想要拖进去的话必须确保prefab有Bubble脚本  
     private ObjectPool<Bubble> bubblePool;   //泛型，类型为Bubble   之后想做更多东西可以仿照泛型写 <>里面填写不同的脚本名称即可使用对象池
-
+    private Vector3 bubblePosition;
+    public float OffectX;//泡泡生成在玩家面前的偏移值
+    [HideInInspector]public float BubbleLarge;//临时储存泡泡的大小
+    [Header("事件监听")]
+    public TransFormEventSO Transform_Bubble_To_PlayerEvent;
+    public FloatEventSO BubbleMaxEvent;
     void Start()
     {
         bubblePool = new ObjectPool<Bubble>(bubblePrefab);    
@@ -19,13 +24,39 @@ public class BubbleManager : MonoBehaviour
     {
         
     }
+    private void OnEnable()
+    {
+        Transform_Bubble_To_PlayerEvent.OnTransformEventRaised += OnGetBubblePo;
+        BubbleMaxEvent.OnFloatEventRaised += OnGetBubbleLarge;
+    }
+
+    private void OnGetBubbleLarge(float Large)
+    {
+        BubbleLarge = Large;
+    }
+
+    private void OnGetBubblePo(Transform Player)
+    {
+        if(Player.localScale.x == 1)
+        {
+            bubblePosition = new Vector3(Player.position.x - OffectX, Player.position.y, Player.position.z);
+        }
+        if(Player.localScale.x == -1)
+        {
+            bubblePosition = new Vector3(Player.position.x + OffectX, Player.position.y, Player.position.z);
+        }
+    }
+
+    private void OnDisable()
+    {
+        Transform_Bubble_To_PlayerEvent.OnTransformEventRaised -= OnGetBubblePo;
+        BubbleMaxEvent.OnFloatEventRaised -= OnGetBubbleLarge;
+    }
 
     public void FireBubble()
     {
         Bubble bubble = bubblePool.GetObject();  // 从池中获取泡泡
-        bubble.transform.position = transform.position;  // 设置泡泡位置，作为初始位置  //TODO:改为主角身前
-        bubble.Shoot();  // 发射泡泡
-        
+        bubble.transform.position = bubblePosition;  // 设置泡泡位置，作为初始位置  //TODO:改为主角身前
         bubble.Initialize(this);  // 调用 Initialize 方法，将 GameManager 注入到 Bubble
     }
 
