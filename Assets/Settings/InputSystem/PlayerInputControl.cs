@@ -71,6 +71,15 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""31df5b4a-baa7-4388-b86d-7b91555f6b17"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +256,17 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Touch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6bbf7b52-b1c0-400a-b8e3-211c7f13f127"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -927,6 +947,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         m_GamePlay_interact = m_GamePlay.FindAction("interact", throwIfNotFound: true);
         m_GamePlay_Bubble = m_GamePlay.FindAction("Bubble", throwIfNotFound: true);
         m_GamePlay_Touch = m_GamePlay.FindAction("Touch", throwIfNotFound: true);
+        m_GamePlay_Skip = m_GamePlay.FindAction("Skip", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1018,6 +1039,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_interact;
     private readonly InputAction m_GamePlay_Bubble;
     private readonly InputAction m_GamePlay_Touch;
+    private readonly InputAction m_GamePlay_Skip;
     public struct GamePlayActions
     {
         private @PlayerInputControl m_Wrapper;
@@ -1027,6 +1049,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         public InputAction @interact => m_Wrapper.m_GamePlay_interact;
         public InputAction @Bubble => m_Wrapper.m_GamePlay_Bubble;
         public InputAction @Touch => m_Wrapper.m_GamePlay_Touch;
+        public InputAction @Skip => m_Wrapper.m_GamePlay_Skip;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1051,6 +1074,9 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
             @Touch.started += instance.OnTouch;
             @Touch.performed += instance.OnTouch;
             @Touch.canceled += instance.OnTouch;
+            @Skip.started += instance.OnSkip;
+            @Skip.performed += instance.OnSkip;
+            @Skip.canceled += instance.OnSkip;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -1070,6 +1096,9 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
             @Touch.started -= instance.OnTouch;
             @Touch.performed -= instance.OnTouch;
             @Touch.canceled -= instance.OnTouch;
+            @Skip.started -= instance.OnSkip;
+            @Skip.performed -= instance.OnSkip;
+            @Skip.canceled -= instance.OnSkip;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -1327,6 +1356,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnBubble(InputAction.CallbackContext context);
         void OnTouch(InputAction.CallbackContext context);
+        void OnSkip(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
