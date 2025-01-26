@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BubbleManager : MonoBehaviour
 {
@@ -9,8 +10,12 @@ public class BubbleManager : MonoBehaviour
     public Bubble bubblePrefab;   //这里的类型为bubble 不是GameObject  想要拖进去的话必须确保prefab有Bubble脚本  
     private ObjectPool<Bubble> bubblePool;   //泛型，类型为Bubble   之后想做更多东西可以仿照泛型写 <>里面填写不同的脚本名称即可使用对象池
     private Vector3 bubblePosition;
-    public float OffectX;//泡泡生成在玩家面前的偏移值
-    [HideInInspector]public float BubbleLarge;//临时储存泡泡的大小
+    
+    
+    public float offsetX;//泡泡生成在玩家面前的偏移值
+    [HideInInspector]public float bubbleLarge;//临时储存泡泡的大小
+    
+    
     [Header("事件监听")]
     public TransFormEventSO Transform_Bubble_To_PlayerEvent;
     public FloatEventSO BubbleMaxEvent;
@@ -30,20 +35,20 @@ public class BubbleManager : MonoBehaviour
         BubbleMaxEvent.OnFloatEventRaised += OnGetBubbleLarge;
     }
 
-    private void OnGetBubbleLarge(float Large)
+    private void OnGetBubbleLarge(float large)
     {
-        BubbleLarge = Large;
+        bubbleLarge = large;
     }
 
-    private void OnGetBubblePo(Transform Player)
+    private void OnGetBubblePo(Transform player)
     {
-        if(Player.localScale.x == 1)
+        if(player.localScale.x == 1)
         {
-            bubblePosition = new Vector3(Player.position.x - OffectX, Player.position.y, Player.position.z);
+            bubblePosition = new Vector3(player.position.x - offsetX, player.position.y, player.position.z);
         }
-        if(Player.localScale.x == -1)
+        if(player.localScale.x == -1)
         {
-            bubblePosition = new Vector3(Player.position.x + OffectX, Player.position.y, Player.position.z);
+            bubblePosition = new Vector3(player.position.x + offsetX, player.position.y, player.position.z);
         }
     }
 
@@ -56,7 +61,7 @@ public class BubbleManager : MonoBehaviour
     public void FireBubble()
     {
         Bubble bubble = bubblePool.GetObject();  // 从池中获取泡泡
-        bubble.transform.position = bubblePosition;  // 设置泡泡位置，作为初始位置  //TODO:改为主角身前
+        bubble.transform.position = bubblePosition;  // 设置泡泡位置，作为初始位置  
         bubble.Initialize(this);  // 调用 Initialize 方法，将 GameManager 注入到 Bubble
     }
 
