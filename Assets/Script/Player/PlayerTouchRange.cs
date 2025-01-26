@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerTouchRange : MonoBehaviour
 {
-    [Header("¹ã²¥")]
-    public VoidEventSO CallBubbleFlyEvent;//¼ì²âµ±ÏÂ°´¼ü->È·¶¨ÅİÅİ·½Ïò
+    [Header("å¹¿æ’­")]
+    public VoidEventSO CallBubbleFlyEvent;//æ£€æµ‹å½“ä¸‹æŒ‰é”®->ç¡®å®šæ³¡æ³¡æ–¹å‘
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.tag == "Bubble")
+        if(other.CompareTag("Bubble"))
         {
             CallBubbleFlyEvent.RaisedVoidEvent();
         }

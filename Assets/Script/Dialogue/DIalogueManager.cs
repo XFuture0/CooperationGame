@@ -11,15 +11,21 @@ public class DIalogueManager : MonoBehaviour
     public Text MainText;
     private bool canSkip;
     private bool canPress;
-    [Header("ÎÄ±¾ÄÚÈİ")]
+    [Header("æ–‡æœ¬å†…å®¹")]
     public TextAsset Textin;
     private int index;
     private int TextLength;
     List<string> Textlist = new List<string>();
+    
+    
+    
     private void Awake()
     {
-        StartList(Textin);//ÎÄ±¾³õÊ¼»¯£¬ÖğÌõÇĞ¸î
+        StartList(Textin);//æ–‡æœ¬åˆå§‹åŒ–ï¼Œé€æ¡åˆ‡å‰²
     }
+    
+    
+    
     private void OnEnable()
     {
         inputControl = GetComponent<PlayerInputControl>();
@@ -29,6 +35,9 @@ public class DIalogueManager : MonoBehaviour
         MainText.text = Textlist[1].ToString();
         index = 2;
     }
+    
+    
+    
     private void OnEnterText(InputAction.CallbackContext context)
     {
         if (index <= TextLength)
@@ -47,6 +56,9 @@ public class DIalogueManager : MonoBehaviour
             }
         }
     }
+    
+    
+    
     private IEnumerator TextPrint()
     {
         canPress = true;
@@ -72,9 +84,12 @@ public class DIalogueManager : MonoBehaviour
             }
         }
     }
-    public void StartList(TextAsset textin)//´¢´æµ½ÁĞ±íÖĞ
+    
+    
+    
+    public void StartList(TextAsset textin)//å‚¨å­˜åˆ°åˆ—è¡¨ä¸­
     {
-        Textlist.Clear();//Çå¿ÕÁĞ±í
+        Textlist.Clear();//åˆ‡æ¢è¯´è¯çš„äººç‰©
         index = 0;
         var text = textin.text.Split('\n');
         foreach (var Text in text)
@@ -83,7 +98,10 @@ public class DIalogueManager : MonoBehaviour
         }
         TextLength = Textlist.Count - 1;
     }
-    public void SwitchName()//ÇĞ»»Ëµ»°µÄÈËÎï
+    
+    
+    
+    public void SwitchName()//åˆ‡æ¢è¯´è¯çš„äººç‰©
     {
         switch (Textlist[index])
         {

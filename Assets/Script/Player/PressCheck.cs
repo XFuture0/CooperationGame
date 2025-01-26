@@ -7,14 +7,14 @@ using UnityEngine.InputSystem;
 public class PressCheck : MonoBehaviour
 {
     private PlayerInputControl inputControl;
-    [Header("¼ì²â°´¼ü")]
+    [Header("æ£€æµ‹æŒ‰é”®")]
     public bool IsPressW;
     public bool IsPressA;
     public bool IsPressS;
     public bool IsPressD;
-    [Header("¹ã²¥")]
-    public FloatEventSO Bubble_Speed_Event;//È·¶¨ÅİÅİµÄ·ÉĞĞ·½Ïò
-    [Header("ÊÂ¼ş¼àÌı")]
+    [Header("å¹¿æ’­")]
+    public FloatEventSO Bubble_Speed_Event;//ç¡®å®šæ³¡æ³¡çš„é£è¡Œæ–¹å‘
+    [Header("äº‹ä»¶ç›‘å¬")]
     public VoidEventSO CallBubbleFlyEvent;
     private void Awake()
     {
@@ -38,7 +38,6 @@ public class PressCheck : MonoBehaviour
         if (IsPressD)
         {
             Bubble_Speed_Event.RaisedFloatEvent(1);
-            Debug.Log(1);
             return;
         }
         if (IsPressA)
@@ -54,7 +53,6 @@ public class PressCheck : MonoBehaviour
         if (IsPressS)
         {
             Bubble_Speed_Event.RaisedFloatEvent(4);
-            return;
         }
     }
     private void OnDisable()
