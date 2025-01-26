@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directionalNumbers: 0
   bubbleSpeed: 5
-  Soft_Time: 2
+  softTime: 2
   Bubble_Speed_Event: {fileID: 11400000, guid: 84df67c06218bd04690cb3c899a4a21c, type: 2}
 --- !u!58 &4527086923526878127
 CircleCollider2D:
