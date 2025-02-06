@@ -18,6 +18,7 @@ public class Bubble : MonoBehaviour
     [Header("bool")]
     private bool isShootBubble;
     private bool isSoft;
+    public bool isRange;//在感应环中
     [Header("悬浮计时器")]
     public float softTime;  //这个变量代表泡泡能停留多久
     private float softTimeCounter;
@@ -128,26 +129,39 @@ public class Bubble : MonoBehaviour
     }
     private void Bubble_Speed()
     {
-        switch (directionalNumbers)
+        if (isRange)
         {
-            case 0:
-                rb.velocity = Vector2.zero;
-                break;
-            case 1:
-                rb.velocity = new Vector2(bubbleSpeed,0);
-                break;
-            case 2:
-                rb.velocity = new Vector2(-bubbleSpeed, 0);
-                break;
-            case 3:
-                rb.velocity = new Vector2(0, bubbleSpeed);
-                break;
-            case 4:
-                rb.velocity = new Vector2(0, -bubbleSpeed);
-                break;
+            switch (directionalNumbers)
+            {
+                case 0:
+                    rb.velocity = Vector2.zero;
+                    break;
+                case 1:
+                    rb.velocity = new Vector2(bubbleSpeed, 0);
+                    break;
+                case 2:
+                    rb.velocity = new Vector2(-bubbleSpeed, 0);
+                    break;
+                case 3:
+                    rb.velocity = new Vector2(0, bubbleSpeed);
+                    break;
+                case 4:
+                    rb.velocity = new Vector2(0, -bubbleSpeed);
+                    break;
+            }
         }
     }
-    
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.tag == "range")
+        {
+            isRange = true;
+        }
+        if(other.tag != "range")
+        {
+            isRange = false;
+        }
+    }
 }
 
 
