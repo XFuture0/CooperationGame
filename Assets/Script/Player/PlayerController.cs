@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private BubbleManager bubbleManager;
     private Vector2 inputDirection;
     public GameObject touchRange;
+    public GameObject BubbleSlider;//泡泡变大的进度条(UI)
     [Header("泡泡属性")]
     private float bubbleLarge;//泡泡的大小
     public float bubbleLargeIng;//泡泡的变大速率
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [Header("广播")]
     public TransFormEventSO Transform_Bubble_To_PlayerEvent;//释放泡泡时将泡泡生成在玩家面前
     public FloatEventSO BubbleMaxEvent;//传递泡泡的大小的数值
+    public FloatEventSO BubbleSliderEvent;//传递泡泡进度条的数值
     private void Awake()
     {
         inputControl = new PlayerInputControl();
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        BubbleSliderEvent.RaisedFloatEvent(bubbleLarge);
         inputDirection = inputControl.GamePlay.Move.ReadValue<Vector2>();
         BlowBubbles();
     }
@@ -97,6 +100,7 @@ public class PlayerController : MonoBehaviour
     //下面这个就是吹泡泡，按下开始吹，松开就结束，可以设计泡泡爆炸或者什么
     private void BubbleStart(InputAction.CallbackContext obj)
     {
+        BubbleSlider.SetActive(true);
         Debug.Log("BubbleStart");
         isBubble = true;
     }
@@ -105,6 +109,7 @@ public class PlayerController : MonoBehaviour
     private void BubbleEnd(InputAction.CallbackContext obj)
     {
         Debug.Log("BubbleEnd");
+        BubbleSlider.SetActive(false);
         isBubble = false;
         if(bubbleLarge < bubbleMin)
         {
