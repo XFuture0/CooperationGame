@@ -8,9 +8,10 @@ public class PlayerTouchRange : MonoBehaviour
     public VoidEventSO CallBubbleFlyEvent;//检测当下按键->确定泡泡方向
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.CompareTag("Bubble"))
+        if(other.tag == "Bubble")
         {
             CallBubbleFlyEvent.RaisedVoidEvent();
+            Debug.Log(1);
         }
     }
 }
