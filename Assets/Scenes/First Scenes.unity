@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 9163230416650182067, guid: 053db18cb18a0ba47ae69a1b7d1017df, type: 3}
-  OffectX: 1
-  BubbleLarge: 0
+  offsetX: 0
+  bubbleLarge: 0
   Transform_Bubble_To_PlayerEvent: {fileID: 11400000, guid: bf20334c51c9c494495bea64cd67b94e, type: 2}
   BubbleMaxEvent: {fileID: 11400000, guid: 8756993b6c0a1524ba057ccf5f4a06ef, type: 2}
 --- !u!1 &393883584
@@ -326,10 +326,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e0861a2db6b6c4e8ecc5b7ca9661a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TouchRange: {fileID: 546562742}
-  BubbleLargeing: 0.01
-  BubbleMax: 2
-  BubbleMin: 0.5
+  touchRange: {fileID: 546562742}
+  bubbleLargeIng: 0.01
+  bubbleMax: 2
+  bubbleMin: 0.2
   moveSpeed: 5
   jumpForce: 8
   isBubble: 0
@@ -633,7 +633,7 @@ GameObject:
   - component: {fileID: 546562745}
   m_Layer: 0
   m_Name: TouchRange
-  m_TagString: Untagged
+  m_TagString: range
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

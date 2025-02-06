@@ -7,6 +7,7 @@ TagManager:
   - Bounds
   - Interactive Object
   - Bubble
+  - range
   layers:
   - Default
   - TransparentFX
