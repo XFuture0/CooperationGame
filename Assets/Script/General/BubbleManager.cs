@@ -38,7 +38,6 @@ public class BubbleManager : MonoBehaviour
     private void OnGetBubbleLarge(float large)
     {
         bubbleLarge = large;
-        Debug.Log(large);
     }
 
     private void OnGetBubblePo(Transform player)
@@ -51,7 +50,6 @@ public class BubbleManager : MonoBehaviour
         {
             bubblePosition = new Vector3(player.position.x + offsetX, player.position.y, player.position.z);
         }
-        Debug.Log(bubblePosition);
     }
 
     private void OnDisable()
